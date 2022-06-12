@@ -8,6 +8,8 @@ Module.register("MMM-charts",{
 
 	start: function() {
 		this.getData();
+		var self = this;
+		setInterval(function() {self.getData();}, 600000);
 	},
 	
 	getScripts: function() {
@@ -87,6 +89,10 @@ Module.register("MMM-charts",{
 					plugins: {
 						legend: {
 							display: false
+						},
+						title: {
+							display: this.config.title != null,
+							text: this.config.title != null ? this.config.title : ""
 						}
 					}
 				}
