@@ -28,7 +28,7 @@ Module.register("MMM-charts",{
 
 	getData: function() {
 		if(this.config.url != null) {
-			this.sendSocketNotification('getdata', {url: this.config.url});
+			this.sendSocketNotification('chart-getdata', {id: this.identifier, url: this.config.url});
 		}
 	},
 	
@@ -56,7 +56,7 @@ Module.register("MMM-charts",{
 			for(var i = 0; i < seriesCount; i++) {
 				datasets.push({
 					data: series[i],
-					borderColor: 'rgba(180, 180, 180, 1)',
+					borderColor: 'rgba(210, 210, 210, 1)',
 					pointRadius: 0,
 					tension: 0.1,
 					borderWidth: 1
@@ -106,8 +106,8 @@ Module.register("MMM-charts",{
 	},
 
 	socketNotificationReceived: function(notification, payload) {
-		if(notification == 'data') {
-			this.chartData = payload;
+		if(notification == 'chart-data' && payload.id == this.identifier) {
+			this.chartData = payload.data;
 			this.updateDom(1000);
 		}
 	},
