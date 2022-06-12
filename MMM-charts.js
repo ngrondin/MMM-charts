@@ -3,7 +3,8 @@ Module.register("MMM-charts",{
 	chartData: [],
 
 	defaults: {
-		
+		width: 500,
+		height: 300
 	},
 
 	start: function() {
@@ -33,8 +34,8 @@ Module.register("MMM-charts",{
 	
 	getDom: function() {
 		var container = document.createElement("div");
-		container.style.width = "500px";
-		container.style.height = "300px";
+		container.style.width = this.config.width + "px";
+		container.style.height = this.config.height + "px";
 		container.classList.add("MMM-charts-container");
 		if(this.chartData != null && this.chartData.length > 0) {
 			var canvas = document.createElement("canvas");
