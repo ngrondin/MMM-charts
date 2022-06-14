@@ -11,11 +11,12 @@ module.exports = NodeHelper.create({
     },
 
     getData: function(id, url) {
-        console.log("Getting Chart data from " + url);
+        console.log("Getting Chart data from " + url + " for " + id);
         var self = this;
         request({ url: url, method: 'GET' }, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 var data = JSON.parse(body);
+                console.log("Returning " + data.length + " lines to " + id);
                 self.sendSocketNotification('chart-data', {id: id, data: data});
             } else {
                 console.log("Error getting chart data: " + error);

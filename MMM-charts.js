@@ -107,6 +107,7 @@ Module.register("MMM-charts",{
 	},
 
 	socketNotificationReceived: function(notification, payload) {
+		console.log("Received " + notification + " for " + payload.id);
 		if(notification == 'chart-data' && payload.id == this.identifier) {
 			this.chartData = payload.data;
 			this.updateDom(1000);
