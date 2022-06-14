@@ -10,7 +10,7 @@ Module.register("MMM-charts",{
 	start: function() {
 		this.getData();
 		var self = this;
-		setInterval(function() {self.getData();}, 600000);
+		setInterval(function() {self.getData();}, 60000);
 	},
 	
 	getScripts: function() {
@@ -34,6 +34,7 @@ Module.register("MMM-charts",{
 	
 	getDom: function() {
 		var container = document.createElement("div");
+		container.id = this.identifier + "_" + (new Date()).getTime(); // This is to create a unique id for each refresh to ensure refresh of dom
 		container.style.width = this.config.width + "px";
 		container.style.height = this.config.height + "px";
 		container.classList.add("MMM-charts-container");
